@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- STA-06: no <title>, no meta description (intentionally present here on homepage, missing on dashboard) -->
+<title>ShopMart - Home</title>
+<meta name="description" content="ShopMart demo store">
+<!-- NF-04: viewport meta tag intentionally MISSING to cause non-responsive layout -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>ShopMart</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <span id="cartCounter">Cart: <span id="cartCount">0</span></span>
+  </nav>
+</header>
+
+<!-- STA-01: unclosed div starts here (never properly closed) -->
+<div class="promo-banner">
+  <h2>Why Shop With Us</h2>
+  <p>Free shipping on all orders over $50!</p>
+  <!-- STA-03 / NF-03: broken image src + missing alt attribute -->
+  <img src="images/promo-banner-does-not-exist.jpg">
+
+  <section class="account-form">
+    <h3>Create Account</h3>
+    <form id="signupForm">
+      <!-- INP-04: placeholder only, no linked <label for="name"> -->
+      <input type="text" id="name" placeholder="Full Name">
+
+      <!-- INP-01: type=text instead of type=email, no pattern validation -->
+      <input type="text" id="email" placeholder="Email Address">
+
+      <!-- INP-02: no minlength / no whitespace-only check -->
+      <input type="password" id="password" placeholder="Password">
+
+      <!-- INP-03: type=text so letters are accepted in a phone field -->
+      <input type="text" id="phone" placeholder="Phone Number">
+
+      <!-- INP-05: no min="0" restriction, negative numbers accepted -->
+      <input type="number" id="age" placeholder="Age">
+
+      <!-- DRP-01: no default/placeholder <option>, silently defaults to first value -->
+      <label>Country
+        <select id="country">
+          <option value="US">United States</option>
+          <option value="IN">India</option>
+          <option value="UK">United Kingdom</option>
+        </select>
+      </label>
+
+      <!-- DRP-03: state list never updates when country changes (see script.js) -->
+      <label>State
+        <select id="state">
+          <option value="CA">California</option>
+          <option value="NY">New York</option>
+          <option value="TX">Texas</option>
+        </select>
+      </label>
+
+      <!-- DRP-02: "Electronics" duplicated in the list -->
+      <label>Category
+        <select id="category">
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="electronics">Electronics</option>
+          <option value="home">Home &amp; Kitchen</option>
+        </select>
+      </label>
+
+      <!-- BTN-01: submit button, no debounce/disable-on-click -> duplicate submissions -->
+      <button type="submit" id="submitBtn">Submit</button>
+
+      <!-- BTN-02: does nothing on click -->
+      <button type="button" id="saveDraftBtn">Save Draft</button>
+
+      <!-- BTN-03: wrong type="submit" on a Cancel button -> submits form instead of clearing it -->
+      <button type="submit" id="cancelBtn">Cancel</button>
+    </form>
+    <p id="formStatus"></p>
+  </section>
+</div>
+<!-- ^ STA-01: promo-banner div intentionally left unclosed -->
+
+<section class="products">
+  <h2>Products</h2>
+
+  <div class="toolbar">
+    <input type="text" id="searchBox" placeholder="Search products...">
+    <button type="button" id="searchBtn">Search</button>
+
+    <!-- FUNC-03: changing this never actually reorders the list -->
+    <label>Sort by
+      <select id="sortSelect">
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Products are rendered dynamically from dummy data in script.js -->
+  <div id="productList" class="product-list"></div>
+
+  <div class="pagination">
+    <!-- FUNC-04: "Next" re-renders the same page of data -->
+    <button type="button" id="prevPageBtn">Prev</button>
+    <span id="pageIndicator">Page 1</span>
+    <button type="button" id="nextPageBtn">Next</button>
+  </div>
+</section>
+
+<!-- STA-05: duplicate id="dup1" used on two different elements -->
+<div id="dup1" class="hidden-note">note A</div>
+<div id="dup1" class="hidden-note">note B</div>
+
+<!-- NF-01: fake loading overlay, artificially delayed via setTimeout in script.js -->
+<div id="loadingOverlay" class="loading-overlay">
+  <p>Loading ShopMart...</p>
+</div>
+
+<footer class="site-footer">
+  <!-- STA-04: dead links -->
+  <a href="#">Privacy Policy</a> |
+  <a href="javascript:void(0)">Terms &amp; Conditions</a> |
+  <!-- NF-02: low-contrast text, styled in style.css -->
+  <p class="low-contrast">All rights reserved. ShopMart is a demo QA test site.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

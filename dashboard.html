@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- STA-06: <title> and meta description intentionally MISSING on this page -->
+<!-- NF-04: viewport meta tag also intentionally missing here -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>ShopMart Dashboard</h1>
+  <nav>
+    <!-- L2-02: broken link, home.html does not exist (should be index.html) -->
+    <a href="home.html">Back to Home</a>
+    <span id="cartCounter">Cart: <span id="cartCount">0</span></span>
+  </nav>
+</header>
+
+<section class="products">
+  <h2>Your Orders</h2>
+
+  <div class="toolbar">
+    <!-- DRP-04: "Electronics" duplicated again on this second-level page -->
+    <label>Filter by Category
+      <select id="filterCategory">
+        <option value="all">All</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="electronics">Electronics</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- L2-04: broken banner image with no alt attribute -->
+  <img src="images/dashboard-banner-missing.jpg" class="dashboard-banner">
+
+  <div id="orderList" class="product-list"></div>
+
+  <div class="order-form">
+    <h3>Reorder Item</h3>
+    <!-- L2-03: Qty is type="text" so letters/symbols are accepted, no numeric validation -->
+    <label>Quantity
+      <input type="text" id="qtyInput" placeholder="e.g. 2">
+    </label>
+
+    <!-- L2-05: Checkout button has no click handler at all -->
+    <button type="button" id="checkoutBtn">Checkout</button>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <a href="#">Privacy Policy</a> |
+  <a href="javascript:void(0)">Terms &amp; Conditions</a>
+  <p class="low-contrast">All rights reserved. ShopMart is a demo QA test site.</p>
+</footer>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
